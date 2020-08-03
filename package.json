@@ -4,11 +4,14 @@
   "description": "Responderfor Janus Balancer",
   "main": "server.js",
   "dependencies": {
+    "axios": "^0.19.2",
     "diskspace": "^2.0.0",
     "express": "^4.17.1",
     "fs": "0.0.1-security",
+    "getconfig": "^4.5.0",
     "http": "0.0.1-security",
     "https": "^1.0.0",
+    "public-ip": "^4.0.2",
     "shelljs": "^0.8.4",
     "socket.io": "^2.3.0"
   },
