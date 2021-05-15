@@ -1,0 +1,22 @@
+{
+    "server": {
+        "useSSL": false,
+        "portSocket": 8860,
+        "key": "",
+        "cert": "",
+        "ca": ""
+    },
+    "janus": {
+        "useSSL": false,
+        "portHttp": 8880,
+        "portWebsocket": 8870,
+        "apiSecret": ""
+    },
+    "recording": {
+        "converter": "/opt/janus/bin/janus-pp-rec"
+    },
+    "balancer": {
+        "url": "",
+        "ip": ""
+    }
+}
