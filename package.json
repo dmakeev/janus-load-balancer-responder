@@ -16,9 +16,10 @@
         "typescript": "^4.2.2"
     },
     "scripts": {
+        "build": "tsc",
         "start": "tsc && node ./dest/server.js",
         "run": "node ./dest/server.js",
-        "install": "cp ./responder.service /etc/systemd/system/responder.service && service responder start"
+        "deploy": "cp ./responder.service /etc/systemd/system/responder.service && service responder start"
     },
     "repository": {
         "type": "git",
