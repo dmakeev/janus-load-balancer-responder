@@ -7,7 +7,7 @@
 
 import * as config from 'getconfig';
 import * as http from 'http';
-import io from 'socket.io-client';
+import { Server } from 'socket.io';
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import publicIp from 'public-ip';
 import shell from 'shelljs';
@@ -20,7 +20,7 @@ class Responder {
     constructor(ownIp: string) {
         const self: Responder = this;
         const httpServer = http.createServer();
-        self.io = io(httpServer);
+        self.io = new Server(httpServer);
         httpServer.listen(config.server.portSocket);
 
         self.ip = ownIp;

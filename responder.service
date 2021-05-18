@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/sudo nice -n -16 /usr/bin/node /opt/responder/dest/server.js
+ExecStart=/usr/bin/sudo nice -n -16 /usr/bin/node /opt/responder/dist/server.js
 Restart=always
 LimitNOFILE=65536
 [Install]
