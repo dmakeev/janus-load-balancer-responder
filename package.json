@@ -19,7 +19,7 @@
         "build": "tsc",
         "start": "tsc && node ./dest/server.js",
         "run": "node ./dest/server.js",
-        "deploy": "cp ./responder.service /etc/systemd/system/responder.service && service responder start"
+        "deploy": "cp ./responder.service /etc/systemd/system/responder.service && service responder start && systemctl enable responder"
     },
     "repository": {
         "type": "git",
