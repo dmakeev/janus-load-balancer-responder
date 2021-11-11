@@ -1,10 +1,11 @@
 [Unit]
-Description=Signaling service
+Description=Responder service
 After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/sudo nice -n -16 /usr/bin/node /opt/responder/dist/server.js
+WorkingDirectory=/opt/responder
+ExecStart=npm run start
 Restart=always
 LimitNOFILE=65536
 [Install]

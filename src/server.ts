@@ -20,16 +20,21 @@ class Responder {
     constructor(ownIp: string) {
         const self: Responder = this;
         const httpServer = http.createServer();
-        self.io = new Server(httpServer);
+        self.io = new Server(httpServer, {
+            cors: {
+                origin: '*',
+                methods: ['GET', 'POST'],
+            },
+        });
         httpServer.listen(config.server.portSocket);
 
         self.ip = ownIp;
         self.registerEvents();
         setTimeout(() => {
-            self.propagateMyself();
+        //    self.propagateMyself();
         }, 1000);
         setInterval(() => {
-            self.propagateMyself();
+        //    self.propagateMyself();
         }, 10000);
         console.log(`Janus responder started at ${ownIp}:${config.server.portSocket}`);
     }
@@ -77,9 +82,9 @@ class Responder {
         const self: Responder = this;
         self.io.on('connection', (socket) => {
             if (config.balancer.ip && socket.handshake.address !== config.balancer.ip) {
-                return socket.disconnect();
+//                return socket.disconnect();
             }
-            self.io.on('/v1/load/cpu', (data, callback) => {
+            socket.on('/v1/load/cpu', (data, callback) => {
                 callback({ status: 'connected', loadAverage: self.getCPU() });
             });
         });
