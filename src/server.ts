@@ -9,7 +9,7 @@ import * as config from 'getconfig';
 import * as http from 'http';
 import { Server } from 'socket.io';
 import axios, { AxiosResponse, AxiosError } from 'axios';
-import publicIp from 'public-ip';
+import { publicIpv4 } from 'public-ip';
 import shell from 'shelljs';
 
 class Responder {
@@ -31,10 +31,10 @@ class Responder {
         self.ip = ownIp;
         self.registerEvents();
         setTimeout(() => {
-        //    self.propagateMyself();
+            // self.propagateMyself();
         }, 1000);
         setInterval(() => {
-        //    self.propagateMyself();
+            // self.propagateMyself();
         }, 10000);
         console.log(`Janus responder started at ${ownIp}:${config.server.portSocket}`);
     }
@@ -82,7 +82,7 @@ class Responder {
         const self: Responder = this;
         self.io.on('connection', (socket) => {
             if (config.balancer.ip && socket.handshake.address !== config.balancer.ip) {
-//                return socket.disconnect();
+                // return socket.disconnect();
             }
             socket.on('/v1/load/cpu', (data, callback) => {
                 callback({ status: 'connected', loadAverage: self.getCPU() });
@@ -109,6 +109,6 @@ process.on('uncaughtException', (e) => {
 });
 
 (async () => {
-    const externalIp = await publicIp.v4();
+    const externalIp = await publicIpv4();
     new Responder(externalIp);
 })();
